@@ -7,8 +7,6 @@ import Button from "react-bootstrap/Button";
 function CommentBox (props){
     const [author, setAuthor] = useState(),
         [body, setBody] = useState(),
-
-        [r, setR ] = useState(),
         authorHandler = e => setAuthor(e.target.value),
         bodyHandler = e => setBody(e.target.value)
 
@@ -21,11 +19,12 @@ function CommentBox (props){
         axios.post('https://hephaestus-backendv1.herokuapp.com/comments/', postInfo)
             .then(response => {
                 console.log(response)
-                setR(response.data)
             })
             .catch(err=>{console.log(err)})
-
+        setTimeout(function(){ window.location.reload() }, 1000);
     }
+
+    function delay(){}
 
     return (
         <Form className="form-inline" onSubmit={onFormSubmit}>
