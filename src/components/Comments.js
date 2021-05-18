@@ -28,23 +28,26 @@ function Comments(){
                 <Card.Subtitle>{post.author}</Card.Subtitle>
                 <Card.Body>{post.body}</Card.Body>
             </Card>
+            </Row>
                 <Row>
                     <br/><br/>
                 </Row>
-            </Row>
+
                 <Row>
                 <Col md={{ span: 6, offset: 3 }}>
-        <Card>
+
             {comments.length ? comments.map(
                     comment=>
-                        <Card.Body className="comDisplay" key={comment.id}>
-                            <Card.Subtitle>Body: {comment.body}</Card.Subtitle>
-                            <Card.Subtitle>By: {comment.author}</Card.Subtitle>
-                            <Card.Subtitle>Comment made: {comment.writtenOn}</Card.Subtitle>
-                        </Card.Body>):<Card.Body>Be the first to comment!</Card.Body>
+                        <Card style={{ width: '20rem' }} className="bottom" border={"dark"} key={comment.id}>
+                            <Card.Subtitle className="space">Body: {comment.body}</Card.Subtitle>
+                            <Card.Subtitle className="space">By: {comment.author}</Card.Subtitle>
+                            <Card.Subtitle className="space">Comment made: {comment.writtenOn}</Card.Subtitle>
+                        </Card>
+            ):<Card>Be the first to comment!</Card>
             }
-        </Card></Col></Row>
-            <Row><CommentBox toPost={post.id}/></Row>
+        </Col></Row>
+
+            <Row><Col md={{ span: 6, offset: 2 }}><CommentBox toPost={post.id}/></Col></Row>
         </Container>
     )
 

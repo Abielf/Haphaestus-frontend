@@ -11,10 +11,9 @@ const Navigation = () => {
                 <Container>
                 <Navbar.Brand href="/">Hephaestus</Navbar.Brand>
                     <a className="gitLink" href='https://github.com/Abielf/Haphaestus-frontend'>github link</a>
-                <Nav className="mr-auto">
                     <Nav.Link href="/">Home </Nav.Link>
-                    <Link to="/newpost"> Create Post</Link>
-                    </Nav>
+                    <Link to="/newpost">Create Post</Link>
+
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-primary">Search</Button>

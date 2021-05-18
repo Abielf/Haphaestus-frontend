@@ -1,7 +1,8 @@
-import {Form} from "react-bootstrap";
+import {Form, Card} from "react-bootstrap";
 import axios from 'axios'
 import React, {useState} from 'react';
 import Button from "react-bootstrap/Button";
+
 
 
 function CommentBox (props){
@@ -21,29 +22,27 @@ function CommentBox (props){
                 console.log(response)
             })
             .catch(err=>{console.log(err)})
-        setTimeout(function(){ window.location.reload() }, 1000);
+        setTimeout(function(){ window.location.reload() }, 500);
     }
 
     function delay(){}
 
     return (
-        <Form className="form-inline" onSubmit={onFormSubmit}>
+        <Card>
+        <Form style={{ width: '18rem' }} className="form-inline" onSubmit={onFormSubmit}>
             <Form.Group controlId="formBasicName">
-                <Form.Label>Enter Name</Form.Label>
-                <Form.Control type="text"  onChange={authorHandler} placeholder="Name goes here" />
-                <Form.Text>What do you want us to call you?</Form.Text>
+                <Form.Label className="space">Enter Name</Form.Label>
+                <Form.Control className="space" type="text"  onChange={authorHandler} placeholder="Name goes here" />
             </Form.Group>
-
             <Form.Group controlId="formBasicComment">
-                <Form.Label>Enter Comment</Form.Label>
-                <Form.Control type="text" onChange={bodyHandler} placeholder="Text goes here" />
-                <Form.Text>What do you wanna say?</Form.Text>
-
+                <Form.Label className="space">Enter Comment</Form.Label>
+                <Form.Control className="space" type="text" onChange={bodyHandler} placeholder="Text goes here" />
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
             </Button>
         </Form>
+        </Card>
     )
 
 }
