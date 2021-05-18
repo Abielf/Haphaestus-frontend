@@ -39,3 +39,11 @@ h2{
 .taggy{
   background-image: url(cloud2.jpg);
 }
+
+bottom{
+  padding-bottom: 10px;
+}
+
+.space{
+  padding: 10px;
+}
