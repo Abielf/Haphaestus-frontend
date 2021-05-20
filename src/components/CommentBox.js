@@ -25,7 +25,7 @@ function CommentBox (props){
         setTimeout(function(){ window.location.reload() }, 500);
     }
 
-    function delay(){}
+
 
     return (
         <Card>
