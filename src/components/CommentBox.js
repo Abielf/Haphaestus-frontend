@@ -22,7 +22,7 @@ function CommentBox (props){
                 console.log(response)
             })
             .catch(err=>{console.log(err)})
-        setTimeout(function(){ window.location.reload() }, 500);
+        setTimeout(function(){ window.location.reload() }, 300);
     }
 
 
