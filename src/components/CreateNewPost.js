@@ -29,16 +29,19 @@ class CreateNewPost extends React.Component{
                 console.log(targetPostId)
                 for(let i = 0; i < tagArray.length; i++) {
                     let tagInfo = {label: tagArray[i], postId: targetPostId};
-                    //if (/[^a-zA-Z ]/.test(tagInfo.label)){}
-                    axios.post('https://hephaestus-backendv1.herokuapp.com/tags/', tagInfo)
-                        .then(tagResponse => {
-                            console.log(tagResponse)
-                            console.log(targetPostId)
-                        })
+                    if (/[?#]/.test(tagInfo.label)){
+                        console.log("oh wuh oh tht tags a big ol whoopsie")
+                    }else {
+                        axios.post('https://hephaestus-backendv1.herokuapp.com/tags/', tagInfo)
+                            .then(tagResponse => {
+                                console.log(tagResponse)
+                                console.log(targetPostId)
+                            })}
+
                 }
             })
             .catch(err=>{console.log(err)})
-        //setTimeout(function(){ window.location.assign("/") }, 300);
+        setTimeout(function(){ window.location.assign("/") }, 300);
     }
 
     render(){return(<Container>
