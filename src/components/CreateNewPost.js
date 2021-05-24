@@ -1,5 +1,5 @@
-import React, {useState, useEffect, Component} from 'react'
-import {ButtonGroup, Container, Form} from "react-bootstrap";
+import React from 'react'
+import { Container, Form} from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 import Button from "react-bootstrap/Button";
 import axios from "axios";
@@ -8,22 +8,37 @@ import axios from "axios";
 class CreateNewPost extends React.Component{
     constructor(props) {
         super(props)
-        this.state = {author: '', title: '', body: '', label: '', postId: 0};
+        this.state = {author: '', title: '', body: '', labels: ''};
     }
     authorHandler = e => this.setState({author:e.target.value})
     titleHandler = e => this.setState({title:e.target.value})
     bodyHandler = e => this.setState({body:e.target.value})
+    tagHandler = e => this.setState({labels:e.target.value})
+
 
     onFormSubmit = e => {
         e.preventDefault();
+        let targetPostId=0;
         const myDate = new Date().toISOString().slice(0, 10).replace('T', ' ');
         const postInfo = {author: this.state.author, title: this.state.title, body: this.state.body, date: myDate};
+        const tagArray = this.state.labels.split(',');
         axios.post('https://hephaestus-backendv1.herokuapp.com/posts/', postInfo)
             .then(response => {
                 console.log(response)
+                targetPostId= parseInt(response.data, 10)
+                console.log(targetPostId)
+                for(let i = 0; i < tagArray.length; i++) {
+                    let tagInfo = {label: tagArray[i], postId: targetPostId};
+                    //if (/[^a-zA-Z ]/.test(tagInfo.label)){}
+                    axios.post('https://hephaestus-backendv1.herokuapp.com/tags/', tagInfo)
+                        .then(tagResponse => {
+                            console.log(tagResponse)
+                            console.log(targetPostId)
+                        })
+                }
             })
             .catch(err=>{console.log(err)})
-        setTimeout(function(){ window.location.assign("/") }, 300);
+        //setTimeout(function(){ window.location.assign("/") }, 300);
     }
 
     render(){return(<Container>
@@ -45,7 +60,7 @@ class CreateNewPost extends React.Component{
 
             <Form.Group controlId="tagsList">
                 <Form.Label>tags</Form.Label>
-                <Form.Control type="text" placeholder="put all tags here" />
+                <Form.Control onChange={this.tagHandler}  type="text" placeholder="put all tags here separated by commas" />
             </Form.Group>
 
             <Button variant="primary" type="submit">
