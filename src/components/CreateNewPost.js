@@ -20,7 +20,7 @@ class CreateNewPost extends React.Component{
         e.preventDefault();
         let targetPostId=0;
         const myDate = new Date().toISOString().slice(0, 10).replace('T', ' ');
-        const postInfo = {author: this.state.author, title: this.state.title, body: this.state.body, date: myDate};
+        const postInfo = {author: this.state.author, title: this.state.title, body: this.state.body, published: myDate};
         const tagArray = this.state.labels.split(',');
         axios.post('https://hephaestus-backendv1.herokuapp.com/posts/', postInfo)
             .then(response => {
@@ -30,7 +30,7 @@ class CreateNewPost extends React.Component{
                 for(let i = 0; i < tagArray.length; i++) {
                     let tagInfo = {label: tagArray[i], postId: targetPostId};
                     if (/[?#]/.test(tagInfo.label)){
-                        console.log("oh wuh oh tht tags a big ol whoopsie")
+                        console.log("oh wuh oh that tags a big ol whoopsie")
                     }else {
                         axios.post('https://hephaestus-backendv1.herokuapp.com/tags/', tagInfo)
                             .then(tagResponse => {
@@ -41,7 +41,7 @@ class CreateNewPost extends React.Component{
                 }
             })
             .catch(err=>{console.log(err)})
-        setTimeout(function(){ window.location.assign("/") }, 300);
+        //setTimeout(function(){ window.location.assign("/") }, 500);
     }
 
     render(){return(<Container>
