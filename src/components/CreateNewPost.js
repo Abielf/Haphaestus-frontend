@@ -41,7 +41,7 @@ class CreateNewPost extends React.Component{
                 }
             })
             .catch(err=>{console.log(err)})
-        //setTimeout(function(){ window.location.assign("/") }, 500);
+        setTimeout(function(){ window.location.assign("/") }, 500);
     }
 
     render(){return(<Container>
